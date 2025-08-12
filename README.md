@@ -12,8 +12,11 @@ This is the frontend for the Allergy Assistant project — a web application to 
 
 ## 📂 Project Structure
 css/ → Styling for all pages
+
 images/ → Project images & assets
+
 js/ → JavaScript functionality
+
 *.html → Frontend pages
 
 
