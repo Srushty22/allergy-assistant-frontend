@@ -1,0 +1,83 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #f5f9ff;
+    color: #003366;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: #0066cc;
+    color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.scan-area {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.scan-btn {
+    background: #0066cc;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.scan-btn:hover {
+    background: #004c99;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+.results {
+    padding: 20px;
+}
+
+.results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.results li {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.safe { color: #339966; }
+.warning { color: #ff9933; }
+.unsafe { color: #cc3333; }
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+footer a {
+    font-size: 20px;
+    color: #0066cc;
+}
+
+footer a.active {
+    color: #003366;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile & Allergy Info</title>
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+<header class="profile-header">
+  <img src="images/user.png" alt="Profile Picture" class="avatar" />
+  <h2 id="username">Loading...</h2>
+  <p id="email">Loading...</p>
+  <button id="logoutBtn" class="edit-btn">Logout</button>
+</header>
+
+<section class="allergies">
+  <h3>My Allergies</h3>
+  <div id="allergyList">
+    <!-- Allergy cards will be inserted here dynamically -->
+  </div>
+</section>
+
+<section class="emergency" id="emergencyInfo" style="display:none;">
+  <h3>🚨 Emergency Info</h3>
+  <p id="emergencyText"></p>
+</section>
+
+<footer>
+  <a href="index.html">🏠</a>
+  <a href="tracker.html">📋</a>
+  <a href="scanner.html">📷</a>
+  <a href="snackfinder.html">🍪</a>
+  <a href="profile.html" class="active">👤</a>
+</footer>
+
+<script>
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Please login first!');
+    window.location.href = 'login.html';
+  }
+
+  const usernameEl = document.getElementById('username');
+  const emailEl = document.getElementById('email');
+  const allergyListEl = document.getElementById('allergyList');
+  const emergencyInfoSection = document.getElementById('emergencyInfo');
+  const emergencyTextEl = document.getElementById('emergencyText');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // Fetch user profile
+  async function fetchProfile() {
+    try {
+      const res = await fetch('/api/profile', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!res.ok) {
+        throw new Error('Failed to fetch profile');
+      }
+      const user = await res.json();
+      usernameEl.textContent = user.username;
+      emailEl.textContent = user.email;
+
+      // Render allergies
+      if (user.allergies && user.allergies.length > 0) {
+        allergyListEl.innerHTML = '';
+        user.allergies.forEach(allergy => {
+          const allergyCard = document.createElement('div');
+          allergyCard.className = 'allergy-card ' + allergy.severity.toLowerCase();
+
+          allergyCard.innerHTML = `
+            <div>
+              <h4>${allergy.name}</h4>
+              <span class="badge">${allergy.severity}</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" ${allergy.active ? 'checked' : ''} disabled />
+              <span class="slider"></span>
+            </label>
+            <button class="plan-btn" onclick="alert('${allergy.solution || 'No action plan available.'}')">🚑 View Action Plan</button>
+          `;
+
+          allergyListEl.appendChild(allergyCard);
+        });
+      } else {
+        allergyListEl.innerHTML = '<p>No allergy data available.</p>';
+      }
+
+      // Show emergency info if available
+      if (user.emergencyContact && user.emergencyContact.name) {
+        emergencyTextEl.textContent = `For ${user.emergencyContact.name}: ${user.emergencyContact.solution || 'No emergency instructions available.'}`;
+        emergencyInfoSection.style.display = 'block';
+      }
+    } catch (err) {
+      alert('Failed to load profile. Please login again.');
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  }
+
+  fetchProfile();
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = 'login.html';
+  });
+</script>
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile & Allergy Info</title>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<header class="profile-header">
+    <img src="images/user.png" alt="Profile Picture" class="avatar">
+    <h2>John Doe</h2>
+    <p>john@example.com</p>
+    <button class="edit-btn">✏️ Edit Profile</button>
+</header>
+
+<section class="allergies">
+    <h3>My Allergies</h3>
+
+    <div class="allergy-card severe">
+        <div>
+            <h4>Peanuts</h4>
+            <span class="badge">Severe</span>
+        </div>
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+        </label>
+        <button class="plan-btn">🚑 View Action Plan</button>
+    </div>
+
+    <div class="allergy-card moderate">
+        <div>
+            <h4>Milk</h4>
+            <span class="badge">Moderate</span>
+        </div>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+        <button class="plan-btn">🚑 View Action Plan</button>
+    </div>
+</section>
+
+<section class="emergency">
+    <h3>🚨 Emergency Info</h3>
+    <p>For Peanut allergy: Administer epinephrine immediately. Call 911. Stay with the patient until help arrives.</p>
+</section>
+
+<footer>
+    <a href="index.html">🏠</a>
+    <a href="tracker.html">📋</a>
+    <a href="scanner.html">📷</a>
+    <a href="snackfinder.html">🍪</a>
+    <a href="profile.html" class="active">👤</a>
+</footer>
+
+</body>
+</html>
+-->

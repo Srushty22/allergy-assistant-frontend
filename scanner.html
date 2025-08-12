@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredient Scanner</title>
+    <link rel="stylesheet" href="css/scanner.css">
+</head>
+<body>
+
+<header>
+    <h1>📷 Ingredient Scanner</h1>
+    <p>Scan a label & check for allergens</p>
+</header>
+
+<div class="scan-area">
+    <button class="scan-btn">📷 Scan Now</button>
+    <p>or</p>
+    <input type="file" id="upload" accept="image/*">
+</div>
+
+<div class="results hidden" id="results">
+    <h2>Detected Ingredients</h2>
+    <ul>
+        <li>Milk <span class="unsafe">❌ Unsafe</span></li>
+        <li>Rice <span class="safe">✅ Safe</span></li>
+        <li>Peanuts <span class="warning">⚠ May Contain</span></li>
+    </ul>
+</div>
+
+<footer>
+    <a href="index.html">🏠</a>
+    <a href="tracker.html">📋</a>
+    <a href="scanner.html" class="active">📷</a>
+    <a href="snackfinder.html">🍪</a>
+</footer>
+
+</body>
+</html>

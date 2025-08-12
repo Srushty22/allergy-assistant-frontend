@@ -1,0 +1,126 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #f5f9ff;
+    color: #003366;
+}
+
+.profile-header {
+    text-align: center;
+    padding: 20px;
+    background: #0066cc;
+    color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.edit-btn {
+    margin-top: 10px;
+    background: white;
+    color: #0066cc;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.allergies {
+    padding: 20px;
+}
+
+.allergy-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.badge {
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+}
+
+.severe .badge { background: #cc3333; }
+.moderate .badge { background: #ff9933; }
+.mild .badge { background: #339966; }
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+.switch input { display: none; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background: #ccc;
+    border-radius: 22px;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+input:checked + .slider {
+    background: #0066cc;
+}
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+.plan-btn {
+    background: #0066cc;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.emergency {
+    background: #ffe6e6;
+    padding: 20px;
+    margin: 20px;
+    border-left: 5px solid #cc3333;
+    border-radius: 8px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+footer a {
+    font-size: 20px;
+    color: #0066cc;
+}
+
+footer a.active {
+    color: #003366;
+    font-weight: bold;
+}
